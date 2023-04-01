@@ -1,2 +1,1 @@
-# mode-js-kurs-mongoDB
-kolejny etap nauki node.js - łączenie z bazą danych mongoDB
+# mode-js-kurs-jest to kolejny eatp kursu w ktorym ustalana jest odpowiednia struktura plikow w prjekcie
