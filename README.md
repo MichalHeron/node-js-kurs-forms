@@ -1,3 +1,3 @@
-# mode-js-kurs-mongoDB
+# mode-js-kurs-forms
 
-kolejny etap nauki node.js - łączenie z bazą danych mongoDB - uzycie biblioteki moongose
+kolejny etap nauki node.js - porzadki w struktourze plikow oraz formularze
