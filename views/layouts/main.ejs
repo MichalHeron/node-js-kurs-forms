@@ -1,12 +1,11 @@
-<%- include('../partials/header') -%>
-    <%- include('../partials/nav') -%>
+<%- include('../partials/header'); -%>
 
-        <div class="container mt-5"> navigation
-            <div class="card card-body">
-                <%- body %>
-            </div>
-        </div>
+<%- include('../partials/nav'); -%>
 
-        Sidebar
-        <%- defineContent("sidebar")%>
-            <%- include('../partials/footer'); -%>
+<div class="container mt-5">
+  <div class="card card-body">
+    <%- body %>
+  </div>
+</div>
+
+<%- include('../partials/footer'); -%>
