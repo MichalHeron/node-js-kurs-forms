@@ -1,0 +1,38 @@
+<form method="POST">
+    <div class="mb-3">
+        <label for="" class="form-label">Nazwa firmy</label>
+        <input type="text" name="name" value="<%= form.name %>"
+            class="form-control <%- errors?.name ? 'is-invalid' : '' %> " required>
+        <% if (errors?.name) {%>
+            <div class="invalid-feedback">
+                <%= errors.name.message %>
+            </div>
+            <% } %>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Slug</label>
+        <input type="text" name="slug" value="<%= form.slug %>"
+            class="form-control <%- errors?.slug ? 'is-invalid' : '' %> " required>
+        <div class="form-text">Przynajmniej 3 znaki</div>
+        <% if (errors?.slug) {%>
+            <div class="invalid-feedback">
+                <%= errors.slug.message %>
+            </div>
+            <% } %>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Liczba pracowników</label>
+        <input type="number" name="employeesCount" value="<%= form.employeesCount %>" class="form-control">
+    </div>
+    <button class="btn btn-primary"><%-buttonText%></button>
+</form>
+
+
+<% if (errors) {%>
+    <div class="alert alert-danger mt-3">
+        Popraw dane w formularzu
+    </div>
+    <% } %>
+
+
+        <%# action moze byc puste wtedy przekaze domyslnie tam gdzie sie znajduje %>
