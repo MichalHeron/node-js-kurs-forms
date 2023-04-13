@@ -1,2 +1,3 @@
 # node-js-kurs-forms
-kurs node js - ustalona pewna struktura plikow oraz wprowadzono formularze
+
+kurs node js (expreess framework) - ustalona pewna struktura plikow oraz wprowadzono formularze
