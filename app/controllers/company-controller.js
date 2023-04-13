@@ -2,7 +2,17 @@ const Company = require('../db/models/company')
 
 class CompanyController {
 	async showCompanies(req, res) {
-		const companies = await Company.find({})
+		const { q, sort } = req.query
+		// const companies = await Company.find({ name: { $regex: q || '', $options: 'i' } }) //dodano wyrazenie regularne z opcja 'i' ktora nie zwraca uwagi na wielkosc liter
+		let query = Company.find({ name: { $regex: q || '', $options: 'i' } })
+		console.log(sort)
+		if (sort) {
+			const s = sort.split('|')
+			query = query.sort({ [s[0]]: s[1] })
+			// query = query.sort({ [sort]: 'asc ' })
+		}
+
+		const companies = await query.exec()
 
 		res.render('pages/companies/companies', {
 			companies,
