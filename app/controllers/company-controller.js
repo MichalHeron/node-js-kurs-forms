@@ -3,10 +3,19 @@ const Company = require('../db/models/company')
 class CompanyController {
 	async showCompanies(req, res) {
 		const { q, sort, countmin, countmax } = req.query
+
+		const page = req.query.page || 1
+		const perPage = 2 //zmienne do paginacji
+
 		// const companies = await Company.find({ name: { $regex: q || '', $options: 'i' } }) //dodano wyrazenie regularne z opcja 'i' ktora nie zwraca uwagi na wielkosc liter
-		// let query = Company.find({ name: { $regex: q || '', $options: 'i' }, employeesCount: { $gte: countmin || 0  } }) //gte - greater than or equal comparision expression operators
+		// let query = Company.find({ name: { $regex: q || '', $options: 'i' }, employeesCount: { $gte: countmin || 0  } }) //gte - greater than or equal comparision expression
+
 		const where = {}
+
+		//search
 		if (q) where.name = { $regex: q, $options: 'i' }
+
+		//filtring
 		if (countmin || countmax) {
 			where.employeesCount = {}
 			if (countmin) where.employeesCount.$gte = countmin
@@ -14,17 +23,29 @@ class CompanyController {
 		}
 		console.log(where)
 		let query = Company.find(where)
-		console.log(sort)
+		
+		//pagination
+		query = query.skip((page - 1) * perPage) //okreslamy ile na strone ma pominac
+		query = query.limit(perPage)
+		
+		console.log(query)
+		//sorting
 		if (sort) {
 			const s = sort.split('|')
 			query = query.sort({ [s[0]]: s[1] })
 			// query = query.sort({ [sort]: 'asc ' })
 		}
-
+		
+		//exec
 		const companies = await query.exec()
+		const resultsCount = await Company.find(where).count()
+		const pagesCount = Math.ceil(resultsCount / perPage)
 
 		res.render('pages/companies/companies', {
 			companies,
+			page,
+			pagesCount,
+			resultsCount,
 		})
 	}
 

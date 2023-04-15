@@ -6,25 +6,28 @@
     <div class="row">
       <div class="col-3">
         <%- include('partials/filtres') %>
-</form>
 
-</div>
-<div class="col-9">
-  <% companies.forEach(company=> { %>
-    <div class="card bg-light mb-3">
-      <div class="card-body">
-        <p class="h3 mb-4">
-          <%= company.name %>
-        </p>
-        <p class="mb-4">
-          Pracowników: <%= company.employeesCount %>
-        </p>
-        <a href="/firmy/<%= company.slug %>" class="btn btn-primary">Zobacz</a>
-        <a href="admin/firmy/<%= company.slug %>/edytuj" class="btn btn-warning">Edytuj</a>
-        <a href="admin/firmy/<%= company.slug %>/usun" onclick="return confirm('Czy jesteś pewny?')"
-          class="btn btn-danger">Usuń</a>
+      </div>
+      <div class="col-9">
+        <% companies.forEach(company=> { %>
+          <div class="card bg-light mb-3">
+            <div class="card-body">
+              <p class="h3 mb-4">
+                <%= company.name %>
+              </p>
+              <p class="mb-4">
+                Pracowników: <%= company.employeesCount %>
+              </p>
+              <a href="/firmy/<%= company.slug %>" class="btn btn-primary">Zobacz</a>
+              <a href="admin/firmy/<%= company.slug %>/edytuj" class="btn btn-warning">Edytuj</a>
+              <a href="admin/firmy/<%= company.slug %>/usun" onclick="return confirm('Czy jesteś pewny?')"
+                class="btn btn-danger">Usuń</a>
+            </div>
+          </div>
+          <% }); %>
       </div>
     </div>
-    <% }); %>
-</div>
-</div>
+    <%- include('partials/paginations') %>
+    
+
+</form>

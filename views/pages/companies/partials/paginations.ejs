@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col">
+        <p>Wyników <%- companies.length %> na <%- resultsCount %></p>
+        <nav>
+            <ul class="pagination">
+                <% for (let i=1; i<=pagesCount; i++) { %>
+                    <li class="page-item <%- page == i ? 'active' : '' %>">
+                        <a href="#" class="page-link" data-page="<%- i %>"><%- i %></a>
+                    </li>
+                    <% }%>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<script> //za pomoca skrytpu js dopisanie parametrow w search url zamiast metoda formularza GET - w tym przypadku dostalismy oczekiwane zachowanie wyrzucania page z url dzieki czemu zawsze po odsiwezeniu filtrow wyszukiwania zaczynamy od pierwszej strony
+    const changePage = e => {
+        e.preventDefault();
+        console.log(e.target.dataset.page)  //wszystko zapisane w atrybucie data-... mozna odczytac w dataset
+        const search = new URLSearchParams(window.location.search)
+        search.set('page', e.target.dataset.page)
+        window.location.href = window.location.origin + window.location.pathname + '?' + search.toString()
+    }
+
+    document.querySelectorAll('.pagination a').forEach(a => {
+        a.addEventListener('click', changePage)
+    })
+</script>
