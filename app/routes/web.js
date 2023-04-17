@@ -9,7 +9,7 @@ router.get('/firmy', CompanyController.showCompanies)
 router.get('/firmy/:name', CompanyController.showCompany)
 
 router.get('/zarejestruj', UserController.showRegister)
-router.post('/zarejestruj', UserController.r egister)
+router.post('/zarejestruj', UserController.register)
 
 
 router.get('/admin/firmy/dodaj', CompanyController.showCreateCompany)
