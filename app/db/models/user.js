@@ -27,6 +27,7 @@ const userSchema = new Schema({
 
 userSchema.pre('save', function (next) {
 	const user = this
+    if (!user.isModified('password')) return next();
 	const salt = bcrypt.genSaltSync(10) //liczba oznacza ile mocy obliczeniowej ma uzyc - im wiecej tym lepie
 	const hash = bcrypt.hashSync(user.password, salt)
 	user.password = hash
@@ -40,6 +41,12 @@ userSchema.post('save', function (error, doc, next) {
 	}
 	next(error)
 })
+
+userSchema.methods = { //miejsce gdzie beda dostepne metody m.in do weryfikacji hasla
+comparePassword(password){
+    return bcrypt.compareSync(password, this.password)
+}
+}
 
 const User = mongoose.model('User', userSchema)
 

@@ -1,18 +1,17 @@
 class PageController {
+	showHome(req, res) {
+		res.render('pages/home', {
+			title: 'Strona główna',
+			user: req.session.user,
+		})
+	}
 
-  showHome(req, res) {
-    res.render('pages/home', {
-      title: 'Strona główna'
-    });
-  }
-
-  showNotFound(req, res) {
-    res.render('errors/404', { 
-      title: 'Nie znaleziono',
-      layout: 'layouts/minimalistic',
-    });
-  }
-
+	showNotFound(req, res) {
+		res.render('errors/404', {
+			title: 'Nie znaleziono',
+			layout: 'layouts/minimalistic',
+		})
+	}
 }
 
-module.exports = new PageController();
+module.exports = new PageController()
