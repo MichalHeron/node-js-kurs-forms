@@ -52,6 +52,30 @@ class UserController {
 		req.session.destroy()
 		res.redirect('/')
 	}
+
+	showProfile(req, res) {
+		res.render('pages/auth/profile', {
+			form: req.session.user,
+		})
+	}
+
+	async update(req, res) {
+		const user = await User.findById(req.session.user._id)
+		user.email = req.body.email
+
+		if (req.body.password) user.password = req.body.password
+
+		try {
+			await user.save()
+			req.session.user.email = user.email
+			res.redirect('back')
+		} catch (e) {
+			res.render('pages/auth/pprofile', {
+				errors: e.errors,
+				form: req.body,
+			})
+		}
+	}
 }
 
 module.exports = new UserController()

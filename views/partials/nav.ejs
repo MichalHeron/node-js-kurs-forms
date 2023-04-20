@@ -24,6 +24,9 @@
           </li>
           <% } else {%>
             <li class="nav-item">
+              <a class="nav-link <%- url.includes('/admin/profil') ? 'active' : '' %>" href="/admin/profil">Profil</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="/wyloguj">Wyloguj</a>
             </li>
             <% } %>

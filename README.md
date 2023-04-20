@@ -6,9 +6,9 @@ kurs node js (expreess framework) -
 - wykorzystanie ejs template
 - zastosowanie okreslonej struktury plikow
 - wyswietlanie danych - sortowanie filtrowanie wyszukiwanie paginacja
-- dodanie rejestracji
+- rejestrowanie uzytkownikow
 - dodanie hashowanie hasel
-- dodanie logowania ze sprawdzaniem hasel (session)
-- dodanie blokowanie dostepu do stron oraz widoków czesci elementow w zaleznosci czy jest sie zalogowanym 
-- 
-  ...
+- logowanie ze sprawdzaniem hasel (session)
+- blokowanie dostepu do stron oraz widoków czesci elementow w zaleznosci czy jest sie zalogowanym
+- edycja profilu email i haslo
+- ...

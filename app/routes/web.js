@@ -14,6 +14,9 @@ router.get('/zaloguj', UserController.showLogin)
 router.post('/zaloguj', UserController.login)
 router.get('/wyloguj', UserController.logout)
 
+router.get('/admin/profil', UserController.showProfile)
+router.post('/admin/profil', UserController.update)
+
 // router.get('/admin/firmy/dodaj', require('../middleware/is-auth-middleware'), CompanyController.showCreateCompany) //przyklad dodania middleware bezposrednio
 router.get('/admin/firmy/dodaj', CompanyController.showCreateCompany)
 router.post('/admin/firmy/dodaj', CompanyController.createCompany)
