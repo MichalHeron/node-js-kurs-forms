@@ -3,7 +3,7 @@
 <% if(user) { %>
   <a href="/admin/firmy/dodaj" class="btn btn-success">Dodaj nową firmę</a>
   <% } %>
-  
+
     <form method="GET">
       <%- include('partials/search') %>
 
@@ -23,6 +23,9 @@
                   </p>
                   <p class="mb-4">
                     Pracowników: <%= company.employeesCount %>
+                  </p>
+                  <p class="mb-4">
+                    Kontakt: <%- company.user?.email %>
                   </p>
                   <a href="/firmy/<%= company.slug %>" class="btn btn-primary">Zobacz</a>
                   <% if(user) { %>

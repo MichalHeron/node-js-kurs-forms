@@ -23,11 +23,11 @@ class CompanyController {
 		}
 		console.log(where)
 		let query = Company.find(where)
-		
+
 		//pagination
 		query = query.skip((page - 1) * perPage) //okreslamy ile na strone ma pominac
 		query = query.limit(perPage)
-		
+
 		console.log(query)
 		//sorting
 		if (sort) {
@@ -35,9 +35,9 @@ class CompanyController {
 			query = query.sort({ [s[0]]: s[1] })
 			// query = query.sort({ [sort]: 'asc ' })
 		}
-		
+
 		//exec
-		const companies = await query.exec()
+		const companies = await query.populate('user').exec()  //populate - zeby przy pobieraniu wypelnilo pole user
 		const resultsCount = await Company.find(where).count()
 		const pagesCount = Math.ceil(resultsCount / perPage)
 
@@ -70,6 +70,7 @@ class CompanyController {
 			name: req.body.name,
 			slug: req.body.slug,
 			employeesCount: req.body.employeesCount,
+			user: req.session.user._id,
 		})
 		try {
 			await company.save()

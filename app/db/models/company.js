@@ -20,6 +20,11 @@ const companySchema = new Schema({
     type: Number,
     min: 1,
     default: 1,
+  },
+  user: {
+    type: mongoose.Types.ObjectId, //zmienna moongose okreslajca zmienna id w bazie danych
+    required: true,
+    ref: 'User', //model 'User' jest referencją
   }
 });
 // setter
