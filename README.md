@@ -12,4 +12,5 @@ kurs node js (expreess framework) -
 - blokowanie dostepu do stron oraz widoków czesci elementow w zaleznosci czy jest sie zalogowanym
 - edycja profilu email i haslo
 - przypisywanie zalogowanego usera do tworzonej firmy i wyswietlanie kontkatu przy firmie
+- dodawanie imie i nazwisko podczas edycji oraz dopiwsywanie imienia i nazwiska do firmy wykorzystujac pole wirtualne
 - ...

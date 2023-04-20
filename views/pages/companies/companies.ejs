@@ -27,6 +27,9 @@
                   <p class="mb-4">
                     Kontakt: <%- company.user?.email %>
                   </p>
+                  <p class="mb-4">
+                    CEO: <%- company.user?.fullName %>
+                  </p>
                   <a href="/firmy/<%= company.slug %>" class="btn btn-primary">Zobacz</a>
                   <% if(user) { %>
                     <a href="admin/firmy/<%= company.slug %>/edytuj" class="btn btn-warning">Edytuj</a>

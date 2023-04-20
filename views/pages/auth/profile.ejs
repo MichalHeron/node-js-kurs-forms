@@ -22,6 +22,25 @@
             </div>
             <% } %>
     </div>
+    <div class="mb-3">
+        <label for="firstName" class="form-label">Imię</label>
+        <input type="text" class="form-control <%- errors?.firstName? 'is-invalid' : ''%>"  value="<%- form.firsName%>" name="firstName"
+            id="firstName">
+        <% if (errors?.firstName) { %>
+            <div class="invalid-feedback">
+                <%= errors.firstName.message %>
+            </div>
+            <% } %>
+    </div>
+    <div class="mb-3">
+        <label for="lastName" class="form-label">Nazwisko</label>
+        <input type="text" class="form-control <%- errors?.lastName? 'is-invalid' : ''%>" name="lastName"  value="<%- form.lastName%>" id="lastName">
+        <% if (errors?.lastName) { %>
+            <div class="invalid-feedback">
+                <%= errors.lastName.message %>
+            </div>
+            <% } %>
+    </div>
 
     <button class="btn btn-primary">Zapisz</button>
 
