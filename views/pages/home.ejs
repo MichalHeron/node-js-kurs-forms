@@ -2,4 +2,7 @@
 
 <% if(user) { %>
     <p>Witaj <%- user.email %> <%- user._id %></p>
-    <%}%>
+    <%} else {%>
+        <p>Witaj na naszej stronie</p>
+        <p>Załóz konto aby dodać własną firmę</p>
+        <% } %>

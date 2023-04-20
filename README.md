@@ -9,4 +9,6 @@ kurs node js (expreess framework) -
 - dodanie rejestracji
 - dodanie hashowanie hasel
 - dodanie logowania ze sprawdzaniem hasel (session)
+- dodanie blokowanie dostepu do stron oraz widoków czesci elementow w zaleznosci czy jest sie zalogowanym 
+- 
   ...

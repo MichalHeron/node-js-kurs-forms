@@ -15,12 +15,19 @@
         <li class="nav-item">
           <a class="nav-link <%- url.includes('/firmy') ? 'active' : '' %>" href="/firmy">Firmy</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link <%- url.includes('/zarejestruj') ? 'active' : '' %>" href="/zarejestruj">Rejestracja</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link <%- url.includes('/zaloguj') ? 'active' : '' %>" href="/zaloguj">Logowanie</a>
-        </li>
+        <% if(!user) { %>
+          <li class="nav-item">
+            <a class="nav-link <%- url.includes('/zarejestruj') ? 'active' : '' %>" href="/zarejestruj">Rejestracja</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%- url.includes('/zaloguj') ? 'active' : '' %>" href="/zaloguj">Logowanie</a>
+          </li>
+          <% } else {%>
+            <li class="nav-item">
+              <a class="nav-link" href="/wyloguj">Wyloguj</a>
+            </li>
+            <% } %>
+
       </ul>
     </div>
   </div>
