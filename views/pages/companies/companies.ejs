@@ -18,24 +18,33 @@
             <% companies.forEach(company=> { %>
               <div class="card bg-light mb-3">
                 <div class="card-body">
-                  <p class="h3 mb-4">
-                    <%= company.name %>
-                  </p>
-                  <p class="mb-4">
-                    Pracowników: <%= company.employeesCount %>
-                  </p>
-                  <p class="mb-4">
-                    Kontakt: <%- company.user?.email %>
-                  </p>
-                  <p class="mb-4">
-                    CEO: <%- company.user?.fullName %>
-                  </p>
-                  <a href="/firmy/<%= company.slug %>" class="btn btn-primary">Zobacz</a>
-                  <% if(user) { %>
-                    <a href="admin/firmy/<%= company.slug %>/edytuj" class="btn btn-warning">Edytuj</a>
-                    <a href="admin/firmy/<%= company.slug %>/usun" onclick="return confirm('Czy jesteś pewny?')"
-                      class="btn btn-danger">Usuń</a>
-                    <% } %>
+                  <div class="row">
+                    <div class="col-3">
+                      <% if (company.image) {%>
+                        <img src="/uploads/<%- company.image %>" class="img-fluid" alt="corpimage">
+                        <%}%>
+                    </div>
+                    <div class="col-9">
+                      <p class="h3 mb-4">
+                        <%= company.name %>
+                      </p>
+                      <p class="mb-4">
+                        Pracowników: <%= company.employeesCount %>
+                      </p>
+                      <p class="mb-4">
+                        Kontakt: <%- company.user?.email %>
+                      </p>
+                      <p class="mb-4">
+                        CEO: <%- company.user?.fullName %>
+                      </p>
+                      <a href="/firmy/<%= company.slug %>" class="btn btn-primary">Zobacz</a>
+                      <% if(user) { %>
+                        <a href="admin/firmy/<%= company.slug %>/edytuj" class="btn btn-warning">Edytuj</a>
+                        <a href="admin/firmy/<%= company.slug %>/usun" onclick="return confirm('Czy jesteś pewny?')"
+                          class="btn btn-danger">Usuń</a>
+                        <% } %>
+                    </div>
+                  </div>
                 </div>
               </div>
               <% }); %>

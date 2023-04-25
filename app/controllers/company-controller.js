@@ -1,4 +1,5 @@
 const Company = require('../db/models/company')
+const fs = require('fs') // wbudowana bilblioteka node-a  fs potafi miedzy innymi usuwac pliki
 
 class CompanyController {
 	async showCompanies(req, res) {
@@ -37,7 +38,7 @@ class CompanyController {
 		}
 
 		//exec
-		const companies = await query.populate('user').exec()  //populate - zeby przy pobieraniu wypelnilo pole user
+		const companies = await query.populate('user').exec() //populate - zeby przy pobieraniu wypelnilo pole user
 		const resultsCount = await Company.find(where).count()
 		const pagesCount = Math.ceil(resultsCount / perPage)
 
@@ -97,6 +98,13 @@ class CompanyController {
 		company.name = req.body.name
 		company.slug = req.body.slug
 		company.employeesCount = req.body.employeesCount
+		if (req.file.filename && company.image) {
+			fs.unlinkSync('public/uploads/' + company.image)
+		}
+		if (req.file.filename) {
+			company.image = req.file.filename
+		}
+		// console.log(req.file) //moze byc files jezeli wiele plikow albo nawet i cale tablice
 
 		try {
 			await company.save()
@@ -111,9 +119,25 @@ class CompanyController {
 
 	async deleteCompany(req, res) {
 		const { name } = req.params
-
+		const company = await Company.findOne({ slug: name }) // dodane przeze mnie
 		try {
+			if (company.image) {
+				fs.unlinkSync('public/uploads/' + company.image)
+			}
 			await Company.deleteOne({ slug: name })
+			res.redirect('/firmy')
+		} catch (e) {
+			//
+		}
+	}
+
+	async deleteImage(req, res) {
+		const { name } = req.params
+		const company = await Company.findOne({ slug: name })
+		try {
+			fs.unlinkSync('public/uploads/' + company.image)
+			company.image = ''
+			await company.save()
 			res.redirect('/firmy')
 		} catch (e) {
 			//

@@ -25,7 +25,8 @@ const companySchema = new Schema({
     type: mongoose.Types.ObjectId, //zmienna moongose okreslajca zmienna id w bazie danych
     required: true,
     ref: 'User', //model 'User' jest referencją
-  }
+  },
+  image: String, // opcjonalne zeby dodac nazwe pliku do bazy
 });
 // setter
 // companySchema.path('slug').set((value) => value.toLowerCase());
