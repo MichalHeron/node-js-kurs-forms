@@ -1,5 +1,6 @@
 const Company = require('../db/models/company')
 const fs = require('fs') // wbudowana bilblioteka node-a  fs potafi miedzy innymi usuwac pliki
+const { Parser } = require('json2csv') // pozwoli na wygenerowanie (sparsowanie) json to csv
 
 class CompanyController {
 	async showCompanies(req, res) {
@@ -142,6 +143,32 @@ class CompanyController {
 		} catch (e) {
 			//
 		}
+	}
+
+	async getCSV(req, res) {
+		const fields = [
+			{
+				label: 'Nazwa',
+				value: 'name',
+			},
+			{
+				label: 'URL',
+				value: 'slug',
+			},
+			{
+				label: 'Liczba pracowników',
+				value: 'employeesCount',
+			},
+		]
+
+		const data = await Company.find()
+		const fileName = 'companies.csv'
+
+		const json2csv = new Parser({ fields }) //przyjmuje nagłówki
+		const csv = json2csv.parse(data) //utworzenie wstepnei pliku csv dodawajac dane wazne zeby value byly te same co nazwy w DB
+		res.header('Content-type', 'text/csv') //informowanie przegladarki ze to co teraz wysylamy to jest dokument *.csv
+		res.attachment(fileName) // dodawanie zalacznika o nazwie
+		res.send(csv)
 	}
 }
 
