@@ -38,6 +38,7 @@ app.use('/', require('./middleware/user-middleware'))
 app.use('/admin', require('./middleware/is-auth-middleware'))
 
 // mount routes
+app.use('/api', require('./routes/api')) // w tym przypadku api jest wyzej od web poneiwaz w web wylapywane sa wszystki endpointy ktorych nie ma w web i przesyla na notfound - api musi wykonac sie przed web
 app.use(require('./routes/web'))
 
 module.exports = app
