@@ -31,6 +31,7 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 // formularze wysylane sa za pomoca: application/x-www-form-urlencoded     bodyParser przerobi i zapisze w zmiennej body
 app.use(cookieParser())
+app.use(express.json()) //wbudowany parser expressa do jsona
 
 // middleware
 app.use('/', require('./middleware/view-variables-middleware'))
