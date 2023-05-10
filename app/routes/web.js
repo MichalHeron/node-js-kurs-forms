@@ -3,7 +3,7 @@ const router = new express.Router()
 const CompanyController = require('../controllers/company-controller')
 const UserController = require('../controllers/user-controller')
 const PageController = require('../controllers/page-controller')
-const upload = require('../services/uploader')
+const upload = require('../services/uploader') //odpowiedzialny jest za wgrywanie zdjec z pola o nazwie podanej u nas image
 
 router.get('/', PageController.showHome)
 router.get('/firmy', CompanyController.showCompanies)

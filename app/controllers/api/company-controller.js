@@ -1,4 +1,5 @@
 const Company = require('../../db/models/company')
+const fs = require('fs')
 
 class CompanyController {
 	async showCompanies(req, res) {
@@ -27,6 +28,7 @@ class CompanyController {
 		}
 	}
 
+    //postman ustawiony na form-data poniewaz musi byc wysylanie jako formularz i by potem  przejsc przez express.urlencoded
 	async edit(req, res) {
 		const { slug } = req.params
 		const company = await Company.findOne({ slug: slug })
@@ -35,12 +37,12 @@ class CompanyController {
 		if (req.body.slug) company.slug = req.body.slug
 		if (req.body.employeesCount) company.employeesCount = req.body.employeesCount
 
-		// if (req.file.filename && company.image) {
-		// 	fs.unlinkSync('public/uploads/' + company.image)
-		// }
-		// if (req.file.filename) {
-		// 	company.image = req.file.filename
-		// }
+		if (req.file.filename && company.image) {
+			fs.unlinkSync('public/uploads/' + company.image)
+		}
+		if (req.file.filename) {
+			company.image = req.file.filename
+		}
 
 		try {
 			await company.save()
