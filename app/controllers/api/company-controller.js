@@ -26,6 +26,29 @@ class CompanyController {
 			res.status(422).json({ errors: e.errors })
 		}
 	}
+
+	async edit(req, res) {
+		const { slug } = req.params
+		const company = await Company.findOne({ slug: slug })
+
+		if (req.body.name) company.name = req.body.name
+		if (req.body.slug) company.slug = req.body.slug
+		if (req.body.employeesCount) company.employeesCount = req.body.employeesCount
+
+		// if (req.file.filename && company.image) {
+		// 	fs.unlinkSync('public/uploads/' + company.image)
+		// }
+		// if (req.file.filename) {
+		// 	company.image = req.file.filename
+		// }
+
+		try {
+			await company.save()
+			res.status(200).json(company)
+		} catch (e) {
+			res.status(422).json({ errors: e.errors })
+		}
+	}
 }
 
 module.exports = new CompanyController()
