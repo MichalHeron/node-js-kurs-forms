@@ -8,8 +8,6 @@ const { sessionKeySecret } = require('./config')
 
 // init database
 require('./db/mongoose')
-
-//session (middleware)
 app.use(
 	session({
 		secret: sessionKeySecret,
