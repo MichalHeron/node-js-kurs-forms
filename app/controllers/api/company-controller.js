@@ -17,8 +17,7 @@ class CompanyController {
 			name: req.body.name,
 			slug: req.body.slug,
 			employeesCount: req.body.employeesCount,
-			// user: req.session.user._id, //tymczasowo zakomentowana lnijka logowania ktora bedzie dodana zas
-			user: req.body.user,
+			user: req.user._id,
 		})
 		try {
 			await company.save()
@@ -28,7 +27,7 @@ class CompanyController {
 		}
 	}
 
-    //postman ustawiony na form-data poniewaz musi byc wysylanie jako formularz i by potem  przejsc przez express.urlencoded
+	//postman ustawiony na form-data poniewaz musi byc wysylanie jako formularz i by potem  przejsc przez express.urlencoded
 	async edit(req, res) {
 		const { slug } = req.params
 		const company = await Company.findOne({ slug: slug })
@@ -52,7 +51,7 @@ class CompanyController {
 		}
 	}
 
-    async delete(req, res){
+	async delete(req, res) {
 		const { slug } = req.params
 		const company = await Company.findOne({ slug }) // dodane przeze mnie
 		try {
@@ -64,7 +63,7 @@ class CompanyController {
 		} catch (e) {
 			//
 		}
-    }
+	}
 }
 
 module.exports = new CompanyController()

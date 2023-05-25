@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt') //biblitoeka do hashowania hasel
 const { validateEmail } = require('../validators')
+const randomstring = require('randomstring')
 
 const userSchema = new Schema({
 	email: {
@@ -19,6 +20,7 @@ const userSchema = new Schema({
 	},
 	firstName: String,
 	lastName: String,
+	apiToken: String,
 })
 
 // userSchema.path('password').set(value => {  // nie do konca wlasciwy sposob hashowania poniewaz hashuje rpzed sprawdzaniem ilosci znakow
@@ -43,6 +45,13 @@ userSchema.post('save', function (error, doc, next) {
 	}
 	next(error)
 })
+
+userSchema.pre('save', function () {
+	const user = this // pod this jest aktualny user
+	if (user.isNew){
+		user.apiToken = randomstring.generate(30) //npm i randomstring
+	} // metoda isNem jest wbudowana metoda moongose sprawdzajaca czy uzytkonik jest nowy
+}) //funkcja wykona sie przed zapisaniem do bazy
 
 userSchema.methods = {
 	//miejsce gdzie beda dostepne metody m.in do weryfikacji hasla
