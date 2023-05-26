@@ -14,4 +14,12 @@ kurs node js (expreess framework) -
 - przypisywanie zalogowanego usera do tworzonej firmy i wyswietlanie kontkatu przy firmie
 - dodawanie imie i nazwisko podczas edycji oraz dopiwsywanie imienia i nazwiska do firmy wykorzystujac pole wirtualne
 - dodawanie uploadu zdjec, wyswietlanie ich, usuwanie, zamienianie
-- ...
+- generowanie CSV
+- obsługa api, pobieranie firm przez api, dodawnaie, usuwanie, edytowanie
+
+przydatne narzedzia zwiekszajace bezpieczenstwo
+jsonwebtoken - bezpieczneijsza opcja wykorzystwyania tokenow
+helmet - middleware ktory zwieksza bezpieczenstwo przed atakami
+rate-limiter-flexible - ogranicza ilosc akcji w ciagu jakiegos czasu (ratelimitermemory)
+
+node js security checklist
